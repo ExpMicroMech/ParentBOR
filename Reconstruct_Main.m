@@ -16,7 +16,7 @@ home;
 % load MTEX and add relevant folders to the path 
 
 % Setup MTEX (default = Bruker setup)
-% run('C:\Users\ruthb\Documents\MTEX\mtex-5.4.0\startup.m'); %start MTEX
+run('C:\Users\ruthb\Documents\MTEX\mtex-5.4.0\startup.m'); %start MTEX [change file location]
 setMTEXpref('xAxisDirection','west');
 setMTEXpref('zAxisDirection','outOfPlane');
 
@@ -24,15 +24,22 @@ setMTEXpref('zAxisDirection','outOfPlane');
 settings.file.mainFolder=['C:\Users\ruthb\Documents\GitHub1\ParentBOR'];%full code location
 addpath('Functions','h5','Results')% Folders to add 
 
-%% Reconstruction Setup 
-% Load EBSD data, setup and store the grain processing and reconstruction settings used 
-% % EBSD data name
-settings.file.fname=('2ai_3(bottom)_re.h5');%file name including file type
-%[If using a simulated dataset use the filename and add .h5] 
+%% Load EBSD data
+% name the dataset and load a h5 file or stored ebsd variable
 
-% For simulated dataset only:
+% EBSD file name 
+% [If using a simulated dataset use the filename and add .h5] 
+settings.file.fname=('Example.h5');%file name including file type
+
+% load the EBSD data (h5 version)
+[ebsd, header] = loadEBSD_h5(settings.file.fname); 
+
+% For simulated dataset: [comment out line 35 & uncomment lines 38-39] 
 % load PaperSimulatedDataset.mat; %load the ebsd data
 % ebsd=alpha_ebsd; %rename the alpha phase data
+
+%% Reconstruction Setup 
+% Setup and store the grain processing and reconstruction settings 
 
 % Phases
 settings.phases.phase1=('Zirconium - alpha'); %phase1 - HCP
@@ -48,7 +55,6 @@ settings.reconstruct.cutoff = 4; % Threshold value for matching GB misorientatio
 settings.reconstruct.inflationPower = 1.6; % controls MCL alorithm 
 
 % Implement settings
-[ebsd, header] = loadEBSD_h5(settings.file.fname); %load the EBSD data [comment out + load dataset manually if using simulated dataset]
 [settings,ebsd] = Setup(settings,ebsd); %run Setup function
 
 %% Plotting Setup
