@@ -1,0 +1,19 @@
+Example.h5
+Date run:   31-Mar-2021 08:32:38
+
+Grain Processing Settings:
+	 Grain boundary threshold: 4.0 degrees
+	 Small grains threshold: 5 pixels
+	 Smoothing value: 2
+
+Reconstruction Settings:
+	 Cutoff: 4.0
+	 Inflation power: 1.6
+
+Reconstruction Section Outputs:
+	 No of alpha grains: 262
+	 Total BOR gB (%): 87.77 
+	 Total non-BOR gB (%): 12.23 
+	 No of discrete clusters (MCL): 24
+	 Average angular deviation from BOR: 1.16
+	 No of beta grains: 18
