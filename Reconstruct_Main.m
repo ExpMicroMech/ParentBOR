@@ -29,7 +29,7 @@ addpath('Functions','h5','Results')% Folders to add
 
 % EBSD file name 
 % [If using a simulated dataset use the filename and add .h5] 
-settings.file.fname=('Example.h5');%file name including file type
+settings.file.fname=('BCWQ10min2.h5');%file name including file type
 
 % load the EBSD data (h5 version)
 [ebsd, header] = loadEBSD_h5(settings.file.fname); 
