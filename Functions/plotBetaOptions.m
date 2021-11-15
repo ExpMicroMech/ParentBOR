@@ -121,7 +121,7 @@ switch m
                 print(gcf,plotname,'-dtiff','-r600'); %save if required
             end      
             
-        elseif bcc_grains(BetaGrainID).prop.certainty==50
+        elseif bcc_grains(BetaGrainID).prop.certainty==3
             bcc_option1=Beta_Options(BetaGrainID).opt{1};
             bcc_option2=Beta_Options(BetaGrainID).opt{2};
             f1=figure;
