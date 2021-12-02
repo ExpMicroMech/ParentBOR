@@ -28,14 +28,14 @@ grains_smooth=[];
 
 % create grains variable for all indexed phases
 % [grains,ebsd(phase).grainId] = calcGrains(ebsd(phase),'angle',gbThreshold);
-[grains,ebsd.grainId,ebsd.mis2mean] = calcGrains(ebsd('indexed'),'angle',gbThreshold);
+[grains,ebsd.grainId,ebsd.mis2mean] = calcGrains(ebsd('indexed'),'angle',gbThreshold,'boundary', 'tight');
 %Remove small grains
 ind = grains.grainSize < smallGrains;
 ebsd(grains(ind)).phase = 0;
 ebsd(grains(ind)).grainId = 0;
 
 %Reidentify grains with small grains removed:
-[grains,ebsd.grainId,ebsd.mis2mean] = calcGrains(ebsd('indexed'),'angle',gbThreshold);
+[grains,ebsd.grainId,ebsd.mis2mean] = calcGrains(ebsd('indexed'),'angle',gbThreshold,'boundary', 'tight');
 % [grains,ebsd(phase).grainId] = calcGrains(ebsd(phase),'angle',gbThreshold);
 
 if smoothGrains > 0

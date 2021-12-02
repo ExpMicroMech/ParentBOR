@@ -55,10 +55,11 @@ switch Type
         %Plot a grain map showing the minimum angle for each alpha grain.
         f2=figure;
         f2.Color=[1 1 1]; %remove grey background
-        plot(grains_hcp,grains_hcp.prop.min_angle,'micronbar','off'); %plot alpha grains by minimum angle
+        plot(grains_hcp,grains_hcp.prop.min_angle*180/pi(),'micronbar','off'); %plot alpha grains by minimum angle
         hold on
         plot(bcc_grains.boundary,'micronbar','off','lineColor','k','linewidth',3); %add beta grain boundaries
         hold off
+%         caxis([0 30]) %control colourbar 
         set(gcf,'name','Quality-alpha_var','numbertitle','off') %change plot name
         %option to save
         if PlotOpt.general.SaveOn > 0
