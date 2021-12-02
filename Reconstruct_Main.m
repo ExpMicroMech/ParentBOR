@@ -29,7 +29,8 @@ addpath('Functions','h5','Results')% Folders to add
 
 % EBSD file name 
 % [If using a simulated dataset use the filename and add .h5] 
-settings.file.fname=('BCWQ10min2.h5');%file name including file type
+
+settings.file.fname=('EBW3a_A_Init_weldRegionROI_largemap1_NP.h5');%file name including file type
 
 % load the EBSD data (h5 version)
 [ebsd, header] = loadEBSD_h5(settings.file.fname); 
@@ -63,31 +64,35 @@ settings.reconstruct.inflationPower = 1.6; % controls MCL alorithm
 
 % General
 PlotOpt.general.SaveOn     = 1;       %Save figures
-PlotOpt.general.Scalebar   = 'Off';    %Include scalebar: 'On' or 'Off'
+PlotOpt.general.Scalebar   = 'On';    %Include scalebar: 'On' or 'Off'
 
 % Part 1 plots - Reconstruction
 PlotOpt.IPFs.dir           = zvector; %IPF direction
-PlotOpt.IPFs.HCP.initial   = 0;       %Alpha phase IPF map (no smoothing) 
+PlotOpt.IPFs.HCP.initial   = 1;       %Alpha phase IPF map (no smoothing) 
 PlotOpt.IPFs.HCP.smoothed  = 1;       %Alpha phase IPF map (smoothed gBs)
 PlotOpt.IPFs.BCC.raw       = 1;       %Initial output for beta phase IPF map
-PlotOpt.IPFs.BCC.processed = 0;       %Reprocessed beta phase IPF map (no smoothing)
+PlotOpt.IPFs.BCC.processed = 1;       %Reprocessed beta phase IPF map (no smoothing)
 PlotOpt.IPFs.BCC.smoothed  = 1;       %Reprocessed beta phase IPF map (smoothed gBs) 
 
 % Part 2 plots - Post Processing
-PlotOpt.Quality.devis      = 0;       %Reconstruction quality (devis) 
-PlotOpt.Quality.min_angle  = 0;       %Reconstruction quality (min_angle)
-PlotOpt.AlphaVar.all       = 0;       %Alpha variants plot - all 12 variants (12 colours)
-PlotOpt.AlphaVar.dir       = 0;       %Alpha variants plot - shared direction (4 colours)
-PlotOpt.AlphaVar.planes    = 0;       %Alpha variants plot - shared planes (6 colours)
+PlotOpt.Quality.devis      = 1;       %Reconstruction quality (devis) 
+PlotOpt.Quality.min_angle  = 1;       %Reconstruction quality (min_angle)
+PlotOpt.AlphaVar.all       = 1;       %Alpha variants plot - all 12 variants (12 colours)
+PlotOpt.AlphaVar.dir       = 1;       %Alpha variants plot - shared direction (4 colours)
+PlotOpt.AlphaVar.planes    = 1;       %Alpha variants plot - shared planes (6 colours)
 PlotOpt.AlphaVar.combo     = 1;       %Combined plot - alpha variants (the 3 plots above)
-PlotOpt.BetaCert.noOfVar   = 0;       %Beta certainty - no of unique alpha variants per beta grain
-PlotOpt.BetaCert.betaOpt   = 0;       %Beta certainty - no of unique beta options for each beta grain
+PlotOpt.BetaCert.noOfVar   = 1;       %Beta certainty - no of unique alpha variants per beta grain
+PlotOpt.BetaCert.betaOpt   = 1;       %Beta certainty - no of unique beta options for each beta grain
+PlotOpt.AlphaVar.ThreshOn  = 0;       %Alpha variant plots - remove uncertain grains in plots (1 = yes)
+PlotOpt.AlphaVar.ThreshCol ='w';      %Colour for uncertain grains & grain boundaries
+PlotOpt.AlphaVar.Thresh    = 3;       %Alpha variant plots - threshold to remove uncertain grains
+                                      %Certainty values: 4=100%;3=50%;2=33%;1=16.6%
 
 % Part 3 plots - Analysis (Interactive plots & pole figures)
 PlotOpt.Interactive.HCP    = 0;       %Interactive IPF map to select an alpha grain
-PlotOpt.Interactive.BCC    = 1;       %Interactive IPF map to select a beta grain
-PlotOpt.BetaOpt_PF.g_sel   = [];      %Grain selected for PF analysis (option to manually enter or updated through beta interactive plot)
-PlotOpt.BetaOpt_PF.basic   = 0;       %For selected beta grain - PF for current beta option with alpha grain orientations(1 polefig, 2 colours) 
+PlotOpt.Interactive.BCC    = 0;       %Interactive IPF map to select a beta grain
+PlotOpt.BetaOpt_PF.g_sel   = 25;%[];  %Grain selected for PF analysis (option to manually enter or updated through beta interactive plot)
+PlotOpt.BetaOpt_PF.basic   = 1;       %For selected beta grain - PF for current beta option with alpha grain orientations(1 polefig, 2 colours) 
 PlotOpt.BetaOpt_PF.colour  = 1;       %For selected beta grain - PFs for all beta options + alpha grain ori(1-6 polefigs, alpha var colouring)
 
 % Part 4 plots - Alternative beta options
@@ -104,7 +109,7 @@ PlotOpt.altBeta.alphaVar   = 0;       %Alpha variants (12 variants/shared (c)/sh
 % Run part 2 - post processing
 % output = alpha variants & parent beta orientation options
 
-[grains] = PostProcessing(grains,ebsd_all,settings); %Calculate alpha variants and beta orientation options
+% [grains] = PostProcessing(grains,ebsd_all,settings); %Calculate alpha variants and beta orientation options
 
 %% Plotting 
 
@@ -113,10 +118,10 @@ PlotOpt.altBeta.alphaVar   = 0;       %Alpha variants (12 variants/shared (c)/sh
 %(also updates PlotOpt with setup for IPFs - used in Plotting_Part3)
 
 % Part 2 - Post Processing (quality, alpha variants, beta options)  
-Plotting_Part2(settings,PlotOpt,grains);
+% Plotting_Part2(settings,PlotOpt,grains);
 
 % Part 3 - Analysis (Interactive plots & pole figures)
-[PlotOpt]=Plotting_Part3(grains,settings,PlotOpt);
+% [PlotOpt]=Plotting_Part3(grains,settings,PlotOpt);
 
 % Part 4 - Explore alternative beta options further [this takes a long time]
 %(Alternate IPF maps & alpha variants based on the other beta options) 

@@ -1,19 +1,13 @@
 BCWQ10min2.h5
-Date run:   08-Apr-2021 11:58:50
+Date run:   06-Aug-2021 09:18:35
 
 Grain Processing Settings:
 	 Grain boundary threshold: 4.0 degrees
-	 Small grains threshold: 5 pixels
+	 Small grains threshold: 6 pixels
 	 Smoothing value: 2
 
 Reconstruction Settings:
 	 Cutoff: 4.0
-	 Inflation power: 1.6
+	 Inflation power: 1.5
 
 Reconstruction Section Outputs:
-	 No of alpha grains: 6736
-	 Total BOR gB (%): 87.76 
-	 Total non-BOR gB (%): 12.24 
-	 No of discrete clusters (MCL): 356
-	 Average angular deviation from BOR: 1.33
-	 No of beta grains: 183
