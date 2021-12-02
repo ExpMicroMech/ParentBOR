@@ -49,6 +49,11 @@ colours_4 = [col_1;col_2;col_3;col_4; col_4;col_1;col_2;col_4; col_3;col_1;col_2
 % Variants with common <c>: [1/2; 3/4; 5/6; 7/8; 9/10; 11/12]
 colours_6 = [0.8941 0.1020 0.1098;0.8941 0.1020 0.1098;0.2157 0.4941 0.7216;0.2157 0.4941 0.7216;0.3020 0.6863 0.2902;0.3020 0.6863 0.2902;0.5961 0.3059 0.6392;0.5961 0.3059 0.6392;1 0.4980 0;1 0.4980 0;1 1 0.2;1 1 0.2];
 
+% find certain grains
+Thresh=PlotOpt.AlphaVar.Thresh;
+uncertGrains=bcc_grains(bcc_grains.prop.certainty<Thresh);
+certGrains=bcc_grains(bcc_grains.prop.certainty>=Thresh);
+uncertCol=PlotOpt.AlphaVar.ThreshCol;
 %% Plots
 switch PlotType
     case 1 % variant number (12 colours)
@@ -57,13 +62,31 @@ switch PlotType
         plot(grains_hcp,grains_hcp.prop.variant_no,'micronbar',SB); %plot alpha grains by variant number
         colormap(Rainbow_12); %12 colours
         hold on
-        plot(bcc_grains.boundary,'lineColor','k','linewidth',2);%add beta grain boundaries
-        hold off     
-        set(gcf,'name','Alpha_variants_12_colours','numbertitle','off') %change plot name
-        %option to save
-        if PlotOpt.general.SaveOn > 0
-            print(gcf,'Alpha_variants_12_colours','-dtiff','-r600'); %save if required
-        end   
+        if PlotOpt.AlphaVar.ThreshOn > 0
+            bcc_grains.CS.color=uncertCol;
+            plot(uncertGrains)
+            hold on
+            plot(uncertGrains.boundary,'lineColor',uncertCol,'linewidth',2);%add beta grain boundaries   
+            plot(certGrains.boundary,'lineColor','r','linewidth',2);%add beta grain boundaries      
+            hold off     
+            legend off
+            set(gcf,'name','Alpha_variants_12_colours_thresh','numbertitle','off') %change plot name
+            %option to save
+            if PlotOpt.general.SaveOn > 0
+                print(gcf,'Alpha_variants_12_colours_thresh','-dtiff','-r600'); %save if required
+            end 
+        else
+            hold on
+            plot(bcc_grains.boundary,'lineColor','r','linewidth',2);%add beta grain boundaries        
+            hold off     
+            set(gcf,'name','Alpha_variants_12_colours','numbertitle','off') %change plot name
+            %option to save
+            if PlotOpt.general.SaveOn > 0
+                print(gcf,'Alpha_variants_12_colours','-dtiff','-r600'); %save if required
+            end 
+        end
+
+        bcc_grains.CS.color='light green';
         
     case 2 % shared (c) (6 colours)
         f2=figure;
@@ -71,13 +94,31 @@ switch PlotType
         plot(grains_hcp,grains_hcp.prop.variant_no,'micronbar',SB); %plot alpha grains by variant number
         colormap(colours_6); %shared (c) colourmap
         hold on
-        plot(bcc_grains.boundary,'lineColor','k','linewidth',2); %add beta grain boundaries
-        hold off        
-        set(gcf,'name','Alpha_variants_shared_planes','numbertitle','off') %change plot name
-        %option to save
-        if PlotOpt.general.SaveOn > 0
-            print(gcf,'Alpha_variants_shared_planes','-dtiff','-r600'); %save if required
-        end   
+        if PlotOpt.AlphaVar.ThreshOn > 0
+            bcc_grains.CS.color=uncertCol;
+            plot(uncertGrains)
+            hold on
+            plot(uncertGrains.boundary,'lineColor',uncertCol,'linewidth',2);%add beta grain boundaries   
+            plot(certGrains.boundary,'lineColor','r','linewidth',2);%add beta grain boundaries        
+            hold off     
+            legend off
+            set(gcf,'name','Alpha_variants_shared_planes_thresh','numbertitle','off') %change plot name
+            %option to save
+            if PlotOpt.general.SaveOn > 0
+                print(gcf,'Alpha_variants_shared_planes_thresh','-dtiff','-r600'); %save if required
+            end 
+        else
+            hold on
+            plot(bcc_grains.boundary,'lineColor','r','linewidth',2);%add beta grain boundaries        
+            hold off     
+            set(gcf,'name','Alpha_variants_shared_planes','numbertitle','off') %change plot name
+            %option to save
+            if PlotOpt.general.SaveOn > 0
+                print(gcf,'Alpha_variants_shared_planes','-dtiff','-r600'); %save if required
+            end 
+        end
+
+        bcc_grains.CS.color='light green';
         
     case 3 % shared <a> (4 colours)
         f3=figure;
@@ -85,13 +126,31 @@ switch PlotType
         plot(grains_hcp,grains_hcp.prop.variant_no,'micronbar',SB);%plot alpha grains by variant number
         colormap(colours_4); %shared <a> colourmap
         hold on
-        plot(bcc_grains.boundary,'lineColor','k','linewidth',2);%add beta grain boundaries
-        hold off
-        set(gcf,'name','Alpha_variants_shared_directions','numbertitle','off') %change plot name
-        %option to save
-        if PlotOpt.general.SaveOn > 0
-            print(gcf,'Alpha_variants_shared_directions','-dtiff','-r600'); %save if required
-        end        
+        if PlotOpt.AlphaVar.ThreshOn > 0
+            bcc_grains.CS.color=uncertCol;
+            plot(uncertGrains);
+            hold on
+            plot(uncertGrains.boundary,'lineColor',uncertCol,'linewidth',2);%add beta grain boundaries   
+            plot(certGrains.boundary,'lineColor','r','linewidth',2);%add beta grain boundaries     
+            hold off     
+            legend off
+            set(gcf,'name','Alpha_variants_shared_directions_thresh','numbertitle','off') %change plot name
+            %option to save
+            if PlotOpt.general.SaveOn > 0
+                print(gcf,'Alpha_variants_shared_directions_thresh','-dtiff','-r600'); %save if required
+            end 
+        else
+            hold on
+            plot(bcc_grains.boundary,'lineColor','r','linewidth',2);%add beta grain boundaries        
+            hold off     
+            set(gcf,'name','Alpha_variants_shared_directions','numbertitle','off') %change plot name
+            %option to save
+            if PlotOpt.general.SaveOn > 0
+                print(gcf,'Alpha_variants_shared_directions','-dtiff','-r600'); %save if required
+            end 
+        end
+        
+        bcc_grains.CS.color='light green';
         
     case 4 % combined plot
         %LAYOUT: variant number(12 colours); shared plane (6 colours); shared direction (4 colours)

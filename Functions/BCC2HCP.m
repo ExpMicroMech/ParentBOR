@@ -19,7 +19,7 @@ function [HCP_set,BOR1] = BCC2HCP (BCC_phi1,BCC_Phi,BCC_phi2,isPlot)
 %% Setup
 
 % Crystal Symmetry - set up the crystal symmetry for each phase
-cs_hcp=crystalSymmetry('hexagonal',[3.2,3.2,5.1],'mineral','Zirconium - alpha','color', 'light blue'); %HCP 
+cs_hcp=crystalSymmetry('6/mmm',[3.2,3.2,5.1],'mineral','Zirconium - alpha','color', 'light blue'); %HCP 
 cs_bcc=crystalSymmetry('m-3m', [3.642 3.642 3.642], 'mineral', 'Zirconium - beta', 'color', 'light red'); %BCC
 
 % Planes/Directions - Set up the planes/directions to plot

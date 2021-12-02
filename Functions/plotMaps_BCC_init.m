@@ -1,4 +1,4 @@
-function plotMaps_BCC(ebsd_all,grains,settings,PlotOpt,Type)
+function plotMaps_BCC_init(ebsd_all,grains,settings,PlotOpt,Type)
 % PLOTMAPS_BCC plots the IPF(Z) map for the reconstructed (parent grain) 
 % microstructure. (+ colour key) 
 %   Options:
@@ -46,11 +46,11 @@ SB=PlotOpt.general.Scalebar; %scalebar on/off
 cd(settings.file.filesave_loc)
 
 %threshold setup
-% find certain grains
-Thresh=PlotOpt.AlphaVar.Thresh;
-uncertGrains=bcc_grains(bcc_grains.prop.certainty<Thresh);
-certGrains=bcc_grains(bcc_grains.prop.certainty>=Thresh);
-uncertCol=PlotOpt.AlphaVar.ThreshCol;
+% % find certain grains
+% Thresh=PlotOpt.AlphaVar.Thresh;
+% uncertGrains=bcc_grains(bcc_grains.prop.certainty<Thresh);
+% certGrains=bcc_grains(bcc_grains.prop.certainty>=Thresh);
+% uncertCol=PlotOpt.AlphaVar.ThreshCol;
 %% Plot Reconstructed map
 
 switch Type
@@ -80,30 +80,30 @@ switch Type
         f3.Color = [1 1 1];
         plot(bcc_grains(phase2),oM3.orientation2color(bcc_grains(phase2).meanOrientation),'micronbar',SB,'figSize','large') %Plot map
         hold on
-        if PlotOpt.AlphaVar.ThreshOn > 0
-            bcc_grains.CS.color=uncertCol;
-            plot(uncertGrains)
-            hold on
-            plot(uncertGrains.boundary,'lineColor',uncertCol,'linewidth',2);%add beta grain boundaries   
-            plot(certGrains.boundary,'lineColor','k','linewidth',2);%add beta grain boundaries      
-            hold off     
-            legend off
-            set(gcf,'name','Beta_map_reprocessed_thresholded','numbertitle','off') %change plot name
-            %option to save
-            if PlotOpt.general.SaveOn > 0
-                print(gcf,'Beta_map_reprocessed_thresholded','-dtiff','-r600'); %save if required
-            end 
-            bcc_grains.CS.color='light green';
-        else
-            hold on
-            plot(bcc_grains.boundary,'linewidth',2); %Add grain boundaries
-            hold off
-            set(gcf,'name','Beta_map_reprocessed','numbertitle','off') %change plot name
-            %option to save
-            if PlotOpt.general.SaveOn > 0       
-                print(gcf,'Beta_map_reprocessed','-dtiff','-r600'); %save if required
-            end       
-        end
+%         if PlotOpt.AlphaVar.ThreshOn > 0
+%             bcc_grains.CS.color=uncertCol;
+%             plot(uncertGrains)
+%             hold on
+%             plot(uncertGrains.boundary,'lineColor',uncertCol,'linewidth',2);%add beta grain boundaries   
+%             plot(certGrains.boundary,'lineColor','k','linewidth',2);%add beta grain boundaries      
+%             hold off     
+%             legend off
+%             set(gcf,'name','Beta_map_reprocessed_thresholded','numbertitle','off') %change plot name
+%             %option to save
+%             if PlotOpt.general.SaveOn > 0
+%                 print(gcf,'Beta_map_reprocessed_thresholded','-dtiff','-r600'); %save if required
+%             end 
+%             bcc_grains.CS.color='light green';
+%         else
+%             hold on
+        plot(bcc_grains.boundary,'linewidth',2); %Add grain boundaries
+        hold off
+        set(gcf,'name','Beta_map_reprocessed','numbertitle','off') %change plot name
+        %option to save
+        if PlotOpt.general.SaveOn > 0       
+            print(gcf,'Beta_map_reprocessed','-dtiff','-r600'); %save if required
+        end       
+%         end
         f4 = figure;
         f4.Color=[1 1 1];
         plot(oM3); %plot colourkey
@@ -114,30 +114,30 @@ switch Type
         f5.Color = [1 1 1];
         plot(bcc_grains_smooth(phase2),oM3.orientation2color(bcc_grains_smooth(phase2).meanOrientation),'micronbar',SB,'figSize','large') %Plot map
         hold on
-        if PlotOpt.AlphaVar.ThreshOn > 0
-            bcc_grains.CS.color=uncertCol;
-            plot(uncertGrains)
-            hold on
-            plot(uncertGrains.boundary,'lineColor',uncertCol,'linewidth',2);%add beta grain boundaries   
-            plot(certGrains.boundary,'lineColor','k','linewidth',2);%add beta grain boundaries      
-            hold off     
-            legend off
-            set(gcf,'name','Beta_map_reprocessed_(smoothed)_thresholded','numbertitle','off') %change plot name
-            %option to save
-            if PlotOpt.general.SaveOn > 0
-                print(gcf,'Beta_map_reprocessed_(smoothed)_thresholded','-dtiff','-r600'); %save if required
-            end 
-            bcc_grains.CS.color='light green';
-        else
-            hold on
-            plot(bcc_grains_smooth.boundary,'linewidth',2); %Add grain boundaries
-            hold off
-            set(gcf,'name','Beta_map_reprocessed_(smoothed)','numbertitle','off') %change plot name
-            %option to save
-            if PlotOpt.general.SaveOn > 0       
-                print(gcf,'Beta_map_reprocessed_(smoothed)','-dtiff','-r600'); %save if required
-            end
+%         if PlotOpt.AlphaVar.ThreshOn > 0
+%             bcc_grains.CS.color=uncertCol;
+%             plot(uncertGrains)
+%             hold on
+%             plot(uncertGrains.boundary,'lineColor',uncertCol,'linewidth',2);%add beta grain boundaries   
+%             plot(certGrains.boundary,'lineColor','k','linewidth',2);%add beta grain boundaries      
+%             hold off     
+%             legend off
+%             set(gcf,'name','Beta_map_reprocessed_(smoothed)_thresholded','numbertitle','off') %change plot name
+%             %option to save
+%             if PlotOpt.general.SaveOn > 0
+%                 print(gcf,'Beta_map_reprocessed_(smoothed)_thresholded','-dtiff','-r600'); %save if required
+%             end 
+%             bcc_grains.CS.color='light green';
+%         else
+        hold on
+        plot(bcc_grains_smooth.boundary,'linewidth',2); %Add grain boundaries
+        hold off
+        set(gcf,'name','Beta_map_reprocessed_(smoothed)','numbertitle','off') %change plot name
+        %option to save
+        if PlotOpt.general.SaveOn > 0       
+            print(gcf,'Beta_map_reprocessed_(smoothed)','-dtiff','-r600'); %save if required
         end
+%         end
 
         f6 = figure;
         f6.Color=[1 1 1];

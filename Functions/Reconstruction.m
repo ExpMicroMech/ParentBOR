@@ -32,7 +32,7 @@ phase1=settings.phases.phase1; %HCP/Alpha
 
 %% Orientation Relationship Setup - BOR (0001)a//{110}b & <11-20>a//<111>b
 %construct the transformation between BCC and HCP: 
-[bcc2hcp_BOR1,symrots_true_hcp,symrots_true_bcc,HCP_set] = BOR_Setup(settings,0); 
+[bcc2hcp_BOR1,symrots_true_hcp,symrots_true_bcc,HCP_set] = BOR_Setup(settings,1); 
 %[bcc2hcp_BOR1,symrots_true_hcp,symrots_true_bcc,HCP_set] = BOR_Setup(settings,isPlot);
 % Note: saves figure without showing it if isPlot=1
 
