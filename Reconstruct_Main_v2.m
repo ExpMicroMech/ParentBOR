@@ -5,7 +5,7 @@
 % Main file for running the reconstruction code 
 % Input required = EBSD data 
 %
-% Last update: 24/03/21 RB
+% Last update: 02/12/21 RB
 %% Clear workspace
 
 clear all;
