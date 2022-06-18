@@ -1,0 +1,15 @@
+insitu8_postExpt.h5
+Date run:   11-Jan-2022 11:11:06
+
+Grain Processing Settings:
+	 Grain boundary threshold: 4.0 degrees
+	 Small grains threshold: 15 pixels
+	 Smoothing value: 2
+
+Reconstruction Settings:
+	 Cutoff: 4.0
+	 Inflation power: 1.6
+
+Reconstruction Section Outputs:
+	 No of discrete clusters (MCL): 325
+	 Average angular deviation from BOR: 0.90

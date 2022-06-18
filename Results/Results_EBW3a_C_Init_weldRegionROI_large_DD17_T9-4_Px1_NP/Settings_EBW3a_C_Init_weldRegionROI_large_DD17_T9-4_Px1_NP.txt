@@ -1,0 +1,15 @@
+EBW3a_C_Init_weldRegionROI_large_DD17_T9-4_Px1_NP.h5
+Date run:   31-Jan-2022 11:30:16
+
+Grain Processing Settings:
+	 Grain boundary threshold: 4.0 degrees
+	 Small grains threshold: 15 pixels
+	 Smoothing value: 2
+
+Reconstruction Settings:
+	 Cutoff: 4.0
+	 Inflation power: 1.4
+
+Reconstruction Section Outputs:
+	 No of discrete clusters (MCL): 563
+	 Average angular deviation from BOR: 0.42

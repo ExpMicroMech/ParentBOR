@@ -1,0 +1,18 @@
+EBW3a_A_Init_cropped_v5_SG.h5
+Date run:   02-Mar-2022 11:17:43
+
+Grain Processing Settings:
+	 Grain boundary threshold: 4.0 degrees
+	 Small grains threshold: 1 pixels
+	 Smoothing value: 2
+
+Reconstruction Settings:
+	 Cutoff: 4.0
+	 Inflation power: 1.2
+
+Reconstruction Section Outputs:
+	 No of alpha grains: 242184
+
+Dataset contains 242184 alpha grains.
+Dataset contains 67.5685% BOR misorientation matched grain boundary.
+Dataset contains 32.4315% not BOR misorientation matched grain boundary.

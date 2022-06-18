@@ -1,0 +1,18 @@
+MTEX reconstruction Testing
+
+Script: MTEX_Comparison_UpdatedPaperVersion.m
+
+Map: insitu9_EBW3a_A_Initial_Cropped.mat
+
+Settings:
+ - small grain threshold: 5
+ - grain boundary threshold: 4 degrees
+ - calc parent grain from triple junctions 
+	min: 2.5degree / max: 5 degree
+ 	threshold min probability: 0.7
+ - growth loop: 3x / 2.5degree threshold
+ - merge similar: 5 degree threshold
+ - merge inclusions: max size 20 pixels
+
+No alpha grains: 50443
+No beta grains: 114

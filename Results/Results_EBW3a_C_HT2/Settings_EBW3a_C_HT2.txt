@@ -1,0 +1,27 @@
+EBW3a_C_HT2.h5
+Date run:   03-Dec-2021 09:16:00
+
+Grain Processing Settings:
+	 Grain boundary threshold: 4.0 degrees
+	 Small grains threshold: 15 pixels
+	 Smoothing value: 2
+
+Reconstruction Settings:
+	 Cutoff: 4.0
+	 Inflation power: 1.6
+
+Reconstruction Section Outputs:
+	 No of alpha grains: 13014
+	 Total BOR gB (%): 93.12 
+	 Total non-BOR gB (%): 6.88 
+	 No of discrete clusters (MCL): 435
+	 Average angular deviation from BOR: 0.69
+	 No of beta grains: 110
+Cropped area stats: 
+	 Crop coordinates:
+		 X: 215 766 
+		 Y: 303 938 
+	 No of alpha grains: 3213
+	 No of beta grains: 31
+	 Total BOR gB (%): 93.01 
+	 Total non-BOR gB (%): 6.99 

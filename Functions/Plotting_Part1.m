@@ -54,19 +54,19 @@ end
 
 if PlotOpt.IPFs.BCC.raw > 0;
     % Plot IPFZ map for initial reconstruction output (+ colourkey)
-    plotMaps_BCC(ebsd_all,grains,settings,PlotOpt,1); 
+    plotMaps_BCC_quick(ebsd_all,grains,settings,PlotOpt,1); 
     %plotMaps_BCC(ebsd_all,grains,settings,PlotOpt,Type)
 end
 
 if PlotOpt.IPFs.BCC.processed > 0;
     % Plot IPFZ map for processed beta grain data (+ colourkey)
-    plotMaps_BCC(ebsd_all,grains,settings,PlotOpt,2);
+    plotMaps_BCC_quick(ebsd_all,grains,settings,PlotOpt,2);
     %plotMaps_BCC(ebsd_all,grains,settings,PlotOpt,Type)
 end
 
 if PlotOpt.IPFs.BCC.smoothed > 0;
     % Plot IPFZ map using smoothed grains for processed beta grain data (+ colourkey)
-    plotMaps_BCC(ebsd_all,grains,settings,PlotOpt,3); 
+    plotMaps_BCC_quick(ebsd_all,grains,settings,PlotOpt,3); 
     %plotMaps_BCC(ebsd_all,grains,settings,PlotOpt,Type)
 end
 

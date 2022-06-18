@@ -30,15 +30,16 @@ addpath('Functions','h5','Results')% Folders to add
 % EBSD file name 
 % [If using a simulated dataset use the filename and add .h5] 
 
-settings.file.fname=('Example.h5');%file name including file type
+settings.file.fname=('ROI_400x_Px1_0um_DD17_T_9_NP.h5');%file name including file type
 
 % load the EBSD data (h5 version)
 [ebsd, header] = loadEBSD_h5(settings.file.fname); 
 
 % For simulated dataset: [comment out line 35 & uncomment lines 38-39] 
 % load PaperSimulatedDataset.mat; %load the ebsd data
+% load insitu9_EBW3a_A_Initial_Cropped.mat; %load the ebsd data
 % ebsd=alpha_ebsd; %rename the alpha phase data
-
+% ebsd=ebsd_small;
 %% Reconstruction Setup 
 % Setup and store the grain processing and reconstruction settings 
 
@@ -52,11 +53,11 @@ settings.grains.smallGrains = 5; % threshold grain size below which the grains w
 settings.grains.smoothGrains = 2;% smoothing value (0 = off) Note: smoothed grains not used in calculations
 
 % Reconstruction settings
-settings.reconstruct.cutoff = 4; % Threshold value for matching GB misorientations (degrees)
+settings.reconstruct.cutoff = 5; % Threshold value for matching GB misorientations (degrees)
 settings.reconstruct.inflationPower = 1.6; % controls MCL algorithm 
 
 % Crop option
-settings.options.crop = 1; % Use cropping tool to downselect a smaller region for processing
+settings.options.crop = 0; % Use cropping tool to downselect a smaller region for processing
 
 % Implement settings
 [settings,ebsd] = Setup(settings,ebsd); %run Setup function
@@ -66,7 +67,7 @@ settings.options.crop = 1; % Use cropping tool to downselect a smaller region fo
 % Note: 1 = ON & 0 = OFF
 
 % General
-PlotOpt.general.SaveOn     = 1;       %Save figures
+PlotOpt.general.SaveOn     = 0;       %Save figures
 PlotOpt.general.Scalebar   = 'On';    %Include scalebar: 'On' or 'Off'
 
 % Part 1 plots - Reconstruction
@@ -78,7 +79,7 @@ PlotOpt.IPFs.BCC.processed = 0;       %Reprocessed beta phase IPF map (no smooth
 PlotOpt.IPFs.BCC.smoothed  = 1;       %Reprocessed beta phase IPF map (smoothed gBs) 
 
 % Part 2 plots - Post Processing
-PlotOpt.Quality.devis      = 0;       %Reconstruction quality (devis) - Note: if using cropped area, use min_angle instead
+PlotOpt.Quality.devis      = 1;       %Reconstruction quality (devis) - Note: if using cropped area, use min_angle instead
 PlotOpt.Quality.min_angle  = 1;       %Reconstruction quality (min_angle)
 PlotOpt.AlphaVar.all       = 1;       %Alpha variants plot - all 12 variants (12 colours)
 PlotOpt.AlphaVar.dir       = 1;       %Alpha variants plot - shared direction (4 colours)
@@ -100,7 +101,7 @@ PlotOpt.BetaOpt_PF.colour  = 1;       %For selected beta grain - PFs for all bet
 
 % Part 4 plots - Alternative beta options
 PlotOpt.altBeta.combo      = 1;       %Combo plot for each of the altenative beta options for the grains (1 plot, 6 subplots)
-PlotOpt.altBeta.alphaVar   = 0;       %Alpha variants (12 variants/shared (c)/shared <a>) - Combined plots x6 (numbered)
+PlotOpt.altBeta.alphaVar   = 1;       %Alpha variants (12 variants/shared (c)/shared <a>) - Combined plots x6 (numbered)
 
 %% Run the Reconstruction Section
 % Run part 1 - reconstuct the parent grain microstructure
@@ -141,7 +142,7 @@ Plotting_Part2(settings,PlotOpt,grains);
 
 %% Save Workspace
 cd(settings.file.filesave_loc); %go to results folder
-filename='workspace'; %filename
+filename='workspace4'; %filename
 save(filename) %save the workspace
 cd(settings.file.mainFolder); %go back to main folder
  

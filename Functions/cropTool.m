@@ -31,13 +31,30 @@ if settings.options.crop == 1
 %     x=[x;x2];
 %     y=[y;y2];
 
+%     region1 = [round(min(x)) round(min(y)) round(max(x)-min(x)) round(max(y)-min(y))];
+%     region1 = [round(min(x)) round(min(y)) 200 250];
+%     x=963;%465;
+%     y=765;%705;
+%     region1 = [(x-120) (y-95) 220 170];
+%     rectangle('position', region1,'edgecolor','k','linewidth',2);
+    
+%     x=342;%HT2
+%     y=662;%HT2
+%     region1 = [x y 198 180];
+    
+%     rectangle('position', region1,'edgecolor','k','linewidth',2);
     region1 = [round(min(x)) round(min(y)) round(max(x)-min(x)) round(max(y)-min(y))];
     rectangle('position', region1,'edgecolor','b','linewidth',2);
       
     X_max=(round(min(x)))+(round(max(x)-min(x)));
     Y_max=(round(min(y)))+(round(max(y)-min(y)));
     X_range=[round(min(x)) X_max];
+    Y_range=[round(min(y)) Y_max];  
+    X_max=(round(min(x)))+(round(max(x)-min(x)));
+    Y_max=(round(min(y)))+(round(max(y)-min(y)));
+    X_range=[round(min(x)) X_max];
     Y_range=[round(min(y)) Y_max];
+
 
     %% select data in this area 
     % ebsd - alpha
@@ -53,15 +70,15 @@ if settings.options.crop == 1
     %% process grains
     
     % housekeeping in settings file
-    cd(settings.file.filesave_loc);% go to results folder
-    fileID2=settings.file.textfile;% get file name
-    fileID = fopen(fileID2,'a+');% open file
-    fprintf(fileID,'Cropped area stats: \n'); % add subtitle
-    fprintf(fileID,'\t Crop coordinates:\n'); % add subtitle
-    fprintf(fileID,'\t\t X: %i %i \n',X_range(1),X_range(2)); % X min/max
-    fprintf(fileID,'\t\t Y: %i %i \n',Y_range(1),Y_range(2)); % Y min/max
-    fclose(fileID);%close the file
-    cd (settings.file.mainFolder);% return to main folder
+%     cd(settings.file.filesave_loc);% go to results folder
+%     fileID2=settings.file.textfile;% get file name
+%     fileID = fopen(fileID2,'a+');% open file
+%     fprintf(fileID,'Cropped area stats: \n'); % add subtitle
+%     fprintf(fileID,'\t Crop coordinates:\n'); % add subtitle
+%     fprintf(fileID,'\t\t X: %i %i \n',X_range(1),X_range(2)); % X min/max
+%     fprintf(fileID,'\t\t Y: %i %i \n',Y_range(1),Y_range(2)); % Y min/max
+%     fclose(fileID);%close the file
+%     cd (settings.file.mainFolder);% return to main folder
     
     %grain processing
     [ebsd_area1,grains_alpha_area1,grains_smooth_alpha_area1] = GrainProcessing1(ebsd_area1,settings,1);%alpha
@@ -98,10 +115,10 @@ if settings.options.crop == 1
     
     %% change file save location
     
-    cd(settings.file.filesave_loc);% go to results folder
-    mkdir Cropped %make a new folder
-    saveFolder=settings.file.filesave_loc;
-    settings.file.filesave_loc=[saveFolder,'\Cropped\']; %update save folder location
+%     cd(settings.file.filesave_loc);% go to results folder
+%     mkdir Cropped %make a new folder
+%     saveFolder=settings.file.filesave_loc;
+%     settings.file.filesave_loc=[saveFolder,'\Cropped\']; %update save folder location
     cd(settings.file.filesave_loc);% go to new results folder
     print(f1,'Crop_Region','-dtiff','-r600'); %save the crop figure in new folder
     print(f2,'Crop_GB_types_map','-dtiff','-r600'); %save the crop figure in new folder

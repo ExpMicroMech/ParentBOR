@@ -1,0 +1,22 @@
+EBW3a_A_Init_cropped_v4.h5
+Date run:   01-Mar-2022 18:10:58
+
+Grain Processing Settings:
+	 Grain boundary threshold: 4.0 degrees
+	 Small grains threshold: 15 pixels
+	 Smoothing value: 2
+
+Reconstruction Settings:
+	 Cutoff: 4.0
+	 Inflation power: 1.8
+
+Reconstruction Section Outputs:
+	 No of discrete clusters (MCL): 970
+	 Average angular deviation from BOR: 0.70
+
+Dataset contains 17610 alpha grains.
+Dataset contains 94.8582% BOR misorientation matched grain boundary.
+Dataset contains 5.1418% not BOR misorientation matched grain boundary.
+MCL found 970 discrete clusters.
+The reconstruction resulted in an average 0.7 degree angular deviation from the BOR.
+Dataset contains 206 beta grains.

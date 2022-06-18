@@ -70,18 +70,51 @@ try
         props = rmfield(props,{'Phi','phi1','phi2','Phase'});
         
 %         ebsd = EBSD(rot,phases,CS,'options',props);
-        ebsd = EBSD(rot,phases,CS,props);
-        
-        ind = props.x > -11111;
-        ebsd = ebsd(ind);
-        ebsd.unitCell = calcUnitCell([ebsd.prop.x,ebsd.prop.y]);
-        
         if length(kGroup.Groups) > 1
             header = h5group2struct(fname,kGroup.Groups(2));
         else
             header = [];
         end
         
+        ystep_corf=1; ystep_cor=0;
+        %fix the YSTEP value if they are not equal due to a bug in 2.3
+        if isfield(header,'XSTEP') && isfield(header,'YSTEP')
+            xstep=header.XSTEP;
+            ystep=header.YSTEP;
+            if round(xstep*100) ~= round(ystep*100)
+                ystep_corf=header.XSTEP/ header.YSTEP;
+                header.YSTEP=header.XSTEP;
+                ystep_cor=1;
+            end
+
+        end
+        
+        ypix_corf=1; ypix_cor=0;
+        %fix the XSTEP value if they are not equal due to a bug in 2.3
+        if isfield(header,'SEPixelSizeX') && isfield(header,'SEPixelSizeY')
+            xstep=header.SEPixelSizeX;
+            ystep=header.SEPixelSizeY;
+            if round(xstep*100) ~= round(ystep*100)
+                ypix_corf=header.SEPixelSizeX/ header.SEPixelSizeY;
+                header.SEPixelSizeY=header.SEPixelSizeX;
+                ypix_cor=1;
+                
+            end
+
+        end
+            %correct the um positions of each point in the map
+        if ystep_cor == 1
+            props.y=props.y*ystep_corf;
+        end
+ 
+        
+        ebsd = EBSD(rot,phases,CS,props);
+        
+        ind = props.x > -11111;
+        ebsd = ebsd(ind);
+        ebsd.unitCell = calcUnitCell([ebsd.prop.x,ebsd.prop.y]);
+        
+
     end
 end
 

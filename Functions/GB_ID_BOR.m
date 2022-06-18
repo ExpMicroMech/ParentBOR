@@ -98,17 +98,17 @@ disp(not_BOR_Total_Label);
 
 %% Store output labels in settings file
 
-%go to results folder
-cd(settings.file.filesave_loc)
-% get file name
-fileID2=settings.file.textfile;
-% open file
-fileID = fopen(fileID2,'a+');
-% add data
-fprintf(fileID,'\t Total BOR gB (%%): %0.2f \n',OR_total); %BOR gB % 
-fprintf(fileID,'\t Total non-BOR gB (%%): %0.2f \n',notOR_total); %Non-BOR gB %
-%close the file
-fclose(fileID);
+% %go to results folder
+% cd(settings.file.filesave_loc)
+% % get file name
+% fileID2=settings.file.textfile;
+% % open file
+% fileID = fopen(fileID2,'a+');
+% % add data
+% fprintf(fileID,'\t Total BOR gB (%%): %0.2f \n',OR_total); %BOR gB % 
+% fprintf(fileID,'\t Total non-BOR gB (%%): %0.2f \n',notOR_total); %Non-BOR gB %
+% %close the file
+% fclose(fileID);
 
 %% Identify non-BOR GB
 

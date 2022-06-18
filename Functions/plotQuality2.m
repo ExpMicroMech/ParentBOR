@@ -29,7 +29,7 @@ function plotQuality2 (grains,PlotOpt,settings,Type)
 grains_hcp=grains.HCP.grains_hcp; %alpha grains
 bcc_grains=grains.BCC.bcc_grains; %beta grains (to show parent grain boundaries)
 devis=grains.HCP.devis; %devis 
-min_angle=grains.HCP.grains_hcp.prop.min_angle; %min angle 
+% min_angle=grains.HCP.grains_hcp.prop.min_angle; %min angle 
 SB=PlotOpt.general.Scalebar; %scalebar on/off
 
 %go to results folder
@@ -46,11 +46,26 @@ switch Type
         hold on
         plot(bcc_grains.boundary,'linewidth',2); %Add Beta/BCC grain boundaries
         hold off
-        set(gcf,'name','Quality-Reconstruction','numbertitle','off') %change plot name
+        caxis([0 30])
+        colorbar
+        set(gcf,'name','Quality-Reconstruction_30','numbertitle','off') %change plot name
         %option to save
         if PlotOpt.general.SaveOn > 0
-            print(gcf,'Quality-Reconstruction','-dtiff','-r600'); %save if required
+            print(gcf,'Quality-Reconstruction_30','-dtiff','-r600'); %save if required
         end      
+        f1 = figure; 
+        f1.Color=[1 1 1];
+        plot(grains_hcp,devis,'micronbar',SB); %plot alpha grains based on devis value
+        hold on
+        plot(bcc_grains.boundary,'linewidth',2); %Add Beta/BCC grain boundaries
+        hold off
+        caxis([0 10])
+%         colorbar
+        set(gcf,'name','Quality-Reconstruction_10','numbertitle','off') %change plot name
+        %option to save
+        if PlotOpt.general.SaveOn > 0
+            print(gcf,'Quality-Reconstruction_10','-dtiff','-r600'); %save if required
+        end     
     case 2 %min_angle version
         %Plot a grain map showing the minimum angle for each alpha grain.
         f2=figure;

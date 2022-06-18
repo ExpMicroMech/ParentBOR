@@ -1,0 +1,16 @@
+EBW3a_A_Init_weldRegionROI_largemap1_NP.h5
+Date run:   02-Dec-2021 15:01:40
+
+Grain Processing Settings:
+	 Grain boundary threshold: 4.0 degrees
+	 Small grains threshold: 15 pixels
+	 Smoothing value: 2
+
+Reconstruction Settings:
+	 Cutoff: 4.0
+	 Inflation power: 1.6
+
+Reconstruction Section Outputs:
+	 No of alpha grains: 39896
+	 Total BOR gB (%): 93.70 
+	 Total non-BOR gB (%): 6.30 
