@@ -1,5 +1,6 @@
 
 *.tif
+<<<<<<< Updated upstream
 *.h5
 h5/PaperSimulatedDataset.mat
 MTEX_v2_4deg_workspace.mat
@@ -43,3 +44,7 @@ Results/Results_BCWQ10min2/Settings_BCWQ10min2.txt
 Results/Results_Example/Settings_Example.txt
 Results/Results_Example/workspace.mat
 Results/Results_BCWQ10min2/Settings_BCWQ10min2.txt
+=======
+h5/map1.h5
+*.h5
+>>>>>>> Stashed changes
