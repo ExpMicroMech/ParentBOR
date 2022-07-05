@@ -16,12 +16,12 @@ home;
 % load MTEX and add relevant folders to the path 
 
 % Setup MTEX (default = Bruker setup)
-run('C:\Users\ruthb\Documents\MTEX\mtex-5.4.0\startup.m'); %start MTEX [change file location]
+run('C:\Users\ruthb\OneDrive\Documents\MTEX\mtex-5.4.0\startup.m'); %start MTEX [change file location]
 setMTEXpref('xAxisDirection','west');
 setMTEXpref('zAxisDirection','outOfPlane');
 
 % Add folders
-settings.file.mainFolder=['C:\Users\ruthb\Documents\GitHub1\ParentBOR'];%full code location
+settings.file.mainFolder=['C:\Users\ruthb\DocumentsOnLaptop\GitHub\ParentBOR'];%full code location
 addpath('Functions','h5','Results')% Folders to add 
 
 %% Load EBSD data
@@ -29,8 +29,12 @@ addpath('Functions','h5','Results')% Folders to add
 
 % EBSD file name 
 % [If using a simulated dataset use the filename and add .h5] 
+<<<<<<< Updated upstream
 
 settings.file.fname=('EBW3a_A_Init_weldRegionROI_largemap1_NP.h5');%file name including file type
+=======
+settings.file.fname=('map2.h5');%file name including file type
+>>>>>>> Stashed changes
 
 % load the EBSD data (h5 version)
 [ebsd, header] = loadEBSD_h5(settings.file.fname); 
@@ -48,12 +52,12 @@ settings.phases.phase2=('Zirconium - beta'); %phase2 - BCC
 
 % Grain processing
 settings.grains.gbThreshold = 4*degree;% grain boundary threshold angle
-settings.grains.smallGrains = 5; % threshold grain size below which the grains will be removed
-settings.grains.smoothGrains = 2;% smoothing value (0 = off) Note: smoothed grains not used in calculations
+settings.grains.smallGrains = 15; % threshold grain size below which the grains will be removed
+settings.grains.smoothGrains = 3;% smoothing value (0 = off) Note: smoothed grains not used in calculations
 
 % Reconstruction settings
 settings.reconstruct.cutoff = 4; % Threshold value for matching GB misorientations (degrees)
-settings.reconstruct.inflationPower = 1.6; % controls MCL alorithm 
+settings.reconstruct.inflationPower = 1.4; % controls MCL alorithm 
 
 % Implement settings
 [settings,ebsd] = Setup(settings,ebsd); %run Setup function
@@ -76,6 +80,7 @@ PlotOpt.IPFs.BCC.smoothed  = 1;       %Reprocessed beta phase IPF map (smoothed 
 
 % Part 2 plots - Post Processing
 PlotOpt.Quality.devis      = 1;       %Reconstruction quality (devis) 
+<<<<<<< Updated upstream
 PlotOpt.Quality.min_angle  = 1;       %Reconstruction quality (min_angle)
 PlotOpt.AlphaVar.all       = 1;       %Alpha variants plot - all 12 variants (12 colours)
 PlotOpt.AlphaVar.dir       = 1;       %Alpha variants plot - shared direction (4 colours)
@@ -87,16 +92,30 @@ PlotOpt.AlphaVar.ThreshOn  = 0;       %Alpha variant plots - remove uncertain gr
 PlotOpt.AlphaVar.ThreshCol ='w';      %Colour for uncertain grains & grain boundaries
 PlotOpt.AlphaVar.Thresh    = 3;       %Alpha variant plots - threshold to remove uncertain grains
                                       %Certainty values: 4=100%;3=50%;2=33%;1=16.6%
+=======
+PlotOpt.Quality.min_angle  = 0;       %Reconstruction quality (min_angle)
+PlotOpt.AlphaVar.all       = 0;       %Alpha variants plot - all 12 variants (12 colours)
+PlotOpt.AlphaVar.dir       = 0;       %Alpha variants plot - shared direction (4 colours)
+PlotOpt.AlphaVar.planes    = 0;       %Alpha variants plot - shared planes (6 colours)
+PlotOpt.AlphaVar.combo     = 0;       %Combined plot - alpha variants (the 3 plots above)
+PlotOpt.BetaCert.noOfVar   = 0;       %Beta certainty - no of unique alpha variants per beta grain
+PlotOpt.BetaCert.betaOpt   = 0;       %Beta certainty - no of unique beta options for each beta grain
+>>>>>>> Stashed changes
 
 % Part 3 plots - Analysis (Interactive plots & pole figures)
 PlotOpt.Interactive.HCP    = 0;       %Interactive IPF map to select an alpha grain
 PlotOpt.Interactive.BCC    = 0;       %Interactive IPF map to select a beta grain
+<<<<<<< Updated upstream
 PlotOpt.BetaOpt_PF.g_sel   = 25;%[];  %Grain selected for PF analysis (option to manually enter or updated through beta interactive plot)
 PlotOpt.BetaOpt_PF.basic   = 1;       %For selected beta grain - PF for current beta option with alpha grain orientations(1 polefig, 2 colours) 
+=======
+PlotOpt.BetaOpt_PF.g_sel   = 25;      %Grain selected for PF analysis (option to manually enter or updated through beta interactive plot)
+PlotOpt.BetaOpt_PF.basic   = 0;       %For selected beta grain - PF for current beta option with alpha grain orientations(1 polefig, 2 colours) 
+>>>>>>> Stashed changes
 PlotOpt.BetaOpt_PF.colour  = 1;       %For selected beta grain - PFs for all beta options + alpha grain ori(1-6 polefigs, alpha var colouring)
 
 % Part 4 plots - Alternative beta options
-PlotOpt.altBeta.combo      = 1;       %Combo plot for each of the altenative beta options for the grains (1 plot, 6 subplots)
+PlotOpt.altBeta.combo      = 0;       %Combo plot for each of the altenative beta options for the grains (1 plot, 6 subplots)
 PlotOpt.altBeta.alphaVar   = 0;       %Alpha variants (12 variants/shared (c)/shared <a>) - Combined plots x6 (numbered)
 
 %% Run the Reconstruction Section
